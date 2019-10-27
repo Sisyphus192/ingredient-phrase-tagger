@@ -19,7 +19,7 @@ class Cli(object):
         Generates training data in the CRF++ format for the ingredient
         tagging task
         """
-        df = pd.read_csv(self.opts.data_path, encoding = "utf-8")
+        df = pd.read_csv(self.opts.data_path)
         df = df.fillna("")
 
         start = int(offset)
@@ -38,6 +38,9 @@ class Cli(object):
 
                 for i, (token, tags) in enumerate(rowData):
                     features = utils.getFeatures(token, i + 1, tokens)
+                    print([token])
+                    print(features)
+                    print(self.bestTag(tags))
                     print(utils.joinLine([token] + features + [self.bestTag(tags)]))
 
             # ToDo: deal with this
