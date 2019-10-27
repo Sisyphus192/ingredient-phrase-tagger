@@ -19,9 +19,14 @@ RUN git clone https://github.com/mtlynch/crfpp.git && \
     ldconfig && \
     cd ..
 
-# Install ingredient-phrase-tagger.
-RUN git clone https://github.com/Sisyphus192/ingredient-phrase-tagger && \
-    cd ingredient-phrase-tagger && \
-    python3 setup.py install
+ADD . /app
+WORKDIR /app
 
-WORKDIR /ingredient-phrase-tagger
+RUN python3 setup.py install
+
+# Clean up.
+RUN rm -rf /var/lib/apt/lists/* && \
+    rm -Rf /usr/share/doc && \
+    rm -Rf /usr/share/man && \
+    apt-get autoremove -y && \
+    apt-get clean
