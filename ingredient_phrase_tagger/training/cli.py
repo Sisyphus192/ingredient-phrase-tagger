@@ -41,7 +41,7 @@ class Cli(object):
                     print([token])
                     print(features)
                     print(self.bestTag(tags))
-                    print(utils.joinLine([token] + features + [self.bestTag(tags)]))
+                    print(utils.joinLine([token] + features + [self.bestTag(tags)]).encode('utf-8'))
 
             # ToDo: deal with this
             except UnicodeDecodeError:
