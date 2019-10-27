@@ -4,5 +4,7 @@ dist: bionic
 language: python
 python:
   - "3.7"
+install:
+  - pip3 install -r requirements.txt
 services: docker
 script: ./docker_build
