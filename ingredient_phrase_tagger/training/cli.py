@@ -38,7 +38,7 @@ class Cli(object):
 
                 for i, (token, tags) in enumerate(rowData):
                     features = utils.getFeatures(token, i + 1, tokens)
-                    print(utils.joinLine([token] + features + [self.bestTag(tags)]))
+                    print(utils.joinLine([token] + features + [self.bestTag(tags)]).encode('utf-8'))
 
             # ToDo: deal with this
             except UnicodeDecodeError:
