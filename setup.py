@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 
 from setuptools import setup, find_packages
@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 import ingredient_phrase_tagger
 
 
-requires, extra = ['Unidecode==0.04.14', 'pandas==0.17.1'], {}
+requires, extra = ['Unidecode>=1.1.0', 'pandas>=0.25.0'], {}
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
 
