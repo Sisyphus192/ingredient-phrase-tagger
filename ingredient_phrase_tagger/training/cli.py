@@ -19,7 +19,7 @@ class Cli(object):
         Generates training data in the CRF++ format for the ingredient
         tagging task
         """
-        df = pd.read_csv(self.opts.data_path)
+        df = pd.read_csv(self.opts.data_path, encoding = "utf-8")
         df = df.fillna("")
 
         start = int(offset)

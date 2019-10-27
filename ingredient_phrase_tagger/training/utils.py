@@ -32,7 +32,7 @@ def tokenize(s):
 
 
 def joinLine(columns):
-    return "\t".join(columns).encode("ascii")
+    return "\t".join(columns)
 
 
 def clumpFractions(s):
