@@ -6,7 +6,6 @@ import pandas as pd
 import utils
 
 
-
 class Cli(object):
     def __init__(self, argv):
         self.opts = self._parse_args(argv)
