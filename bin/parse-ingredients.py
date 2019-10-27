@@ -9,13 +9,13 @@ from ingredient_phrase_tagger.training import utils
 
 
 if len(sys.argv) < 2:
-    sys.stderr.write('Usage: parse-ingredients.py FILENAME')
+    sys.stderr.write("Usage: parse-ingredients.py FILENAME")
     sys.exit(1)
 
 FILENAME = str(sys.argv[1])
 _, tmpFile = tempfile.mkstemp()
 
-with open(FILENAME) as infile, open(tmpFile, 'w') as outfile:
+with open(FILENAME) as infile, open(tmpFile, "w") as outfile:
     outfile.write(utils.export_data(infile.readlines()))
 
 tmpFilePath = "../tmp/model_file"

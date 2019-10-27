@@ -25,26 +25,26 @@ class Cli(object):
         start = int(offset)
         end = int(offset) + int(count)
 
-        df_slice = df.iloc[start: end]
+        df_slice = df.iloc[start:end]
 
         for index, row in df_slice.iterrows():
             try:
                 # extract the display name
                 display_input = utils.cleanUnicodeFractions(row["input"])
                 tokens = utils.tokenize(display_input)
-                del(row["input"])
+                del row["input"]
 
                 rowData = self.addPrefixes([(t, self.matchUp(t, row)) for t in tokens])
 
                 for i, (token, tags) in enumerate(rowData):
-                    features = utils.getFeatures(token, i+1, tokens)
-                    print utils.joinLine([token] + features + [self.bestTag(tags)])
+                    features = utils.getFeatures(token, i + 1, tokens)
+                    print(utils.joinLine([token] + features + [self.bestTag(tags)]))
 
             # ToDo: deal with this
             except UnicodeDecodeError:
                 pass
 
-            print
+            print()
 
     def parseNumbers(self, s):
         """
@@ -54,22 +54,21 @@ class Cli(object):
         """
         ss = utils.unclump(s)
 
-        m3 = re.match('^\d+$', ss)
+        m3 = re.match("^\d+$", ss)
         if m3 is not None:
             return decimal.Decimal(round(float(ss), 2))
 
-        m1 = re.match(r'(\d+)\s+(\d)/(\d)', ss)
+        m1 = re.match(r"(\d+)\s+(\d)/(\d)", ss)
         if m1 is not None:
             num = int(m1.group(1)) + (float(m1.group(2)) / float(m1.group(3)))
-            return decimal.Decimal(str(round(num,2)))
+            return decimal.Decimal(str(round(num, 2)))
 
-        m2 = re.match(r'^(\d)/(\d)$', ss)
+        m2 = re.match(r"^(\d)/(\d)$", ss)
         if m2 is not None:
             num = float(m2.group(1)) / float(m2.group(2))
-            return decimal.Decimal(str(round(num,2)))
+            return decimal.Decimal(str(round(num, 2)))
 
         return None
-
 
     def matchUp(self, token, ingredientRow):
         """
@@ -92,7 +91,7 @@ class Cli(object):
         decimalToken = self.parseNumbers(token)
 
         for key, val in ingredientRow.iteritems():
-            if isinstance(val, basestring):
+            if isinstance(val, str):
 
                 for n, vt in enumerate(utils.tokenize(val)):
                     if utils.normalizeToken(vt) == token:
@@ -106,7 +105,6 @@ class Cli(object):
                     pass
 
         return ret
-
 
     def addPrefixes(self, data):
         """
@@ -132,7 +130,6 @@ class Cli(object):
 
         return newData
 
-
     def bestTag(self, tags):
 
         if len(tags) == 1:
@@ -156,7 +153,11 @@ class Cli(object):
 
         opts.add_option("--count", default="100", help="(%default)")
         opts.add_option("--offset", default="0", help="(%default)")
-        opts.add_option("--data-path", default="nyt-ingredients-snapshot-2015.csv", help="(%default)")
+        opts.add_option(
+            "--data-path",
+            default="nyt-ingredients-snapshot-2015.csv",
+            help="(%default)",
+        )
 
         (options, args) = opts.parse_args(argv)
         return options
