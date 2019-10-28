@@ -12,7 +12,7 @@ install:
 services: docker
 script: ./docker_build
 after_success:
-  - pip3 install coveralls
+  - pip3 install pyyaml coveralls
   # Copy the .coverage.* file from the Docker container to the local filesystem.
   - docker cp ingredient-phrase-tagger-container:/app/$(docker exec -it ingredient-phrase-tagger-container bash -c "ls -a .coverage.*" | tr -d '\r') ./
   # Use coverage combine to canonicalize the source paths.

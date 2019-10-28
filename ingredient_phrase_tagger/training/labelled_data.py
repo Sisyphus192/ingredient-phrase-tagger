@@ -1,4 +1,4 @@
-import unicodecsv
+import csv
 
 _REQUIRED_COLUMNS = ["input", "name", "qty", "range_end", "unit", "comment"]
 
@@ -24,7 +24,7 @@ class Reader(object):
     """
 
     def __init__(self, data_file):
-        self._csv_reader = unicodecsv.DictReader(data_file)
+        self._csv_reader = csv.DictReader(data_file)
         for required_column in _REQUIRED_COLUMNS:
             if required_column not in self._csv_reader.fieldnames:
                 raise InvalidHeaderError(

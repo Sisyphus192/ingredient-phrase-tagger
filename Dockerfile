@@ -8,7 +8,7 @@ LABEL maintainer="Derek Thomas <deth4407@colorado.edu>"
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y build-essential git python3 python3-pip ruby
+RUN apt-get install -y build-essential git python3 python3-pip
 
 # Install CRF++.
 RUN git clone https://github.com/mtlynch/crfpp.git && \

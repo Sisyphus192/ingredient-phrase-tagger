@@ -8,4 +8,8 @@ ingredient_phrase_tagger.egg-info/requires.txt
 ingredient_phrase_tagger.egg-info/top_level.txt
 ingredient_phrase_tagger/training/__init__.py
 ingredient_phrase_tagger/training/cli.py
+ingredient_phrase_tagger/training/labelled_data.py
+ingredient_phrase_tagger/training/partitioner.py
+ingredient_phrase_tagger/training/tokenizer.py
+ingredient_phrase_tagger/training/translator.py
 ingredient_phrase_tagger/training/utils.py

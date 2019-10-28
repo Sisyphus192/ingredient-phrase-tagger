@@ -1,6 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import argparse
+#import sys
+#from os import path
 
+#sys.path.append(path.join(path.dirname(path.abspath(__file__)), "../"))
 from ingredient_phrase_tagger.training import labelled_data
 from ingredient_phrase_tagger.training import partitioner
 
