@@ -1,33 +1,7 @@
 #!/usr/bin/env python3
 import re
 
-
-def tokenize(s):
-    """
-    Tokenize on parenthesis, punctuation, spaces and American units followed by a slash.
-
-    We sometimes give American units and metric units for baking recipes. For example:
-        * 2 tablespoons/30 mililiters milk or cream
-        * 2 1/2 cups/300 grams all-purpose flour
-
-    The recipe database only allows for one unit, and we want to use the American one.
-    But we must split the text on "cups/" etc. in order to pick it up.
-    """
-
-    american_units = [
-        "cup",
-        "tablespoon",
-        "teaspoon",
-        "pound",
-        "ounce",
-        "quart",
-        "pint",
-    ]
-    for unit in american_units:
-        s = s.replace(unit + "/", unit + " ")
-        s = s.replace(unit + "s/", unit + "s ")
-
-    return list(filter(None, re.split(r"([,\(\)])?\s+", clumpFractions(s))))
+import tokenizer
 
 
 def joinLine(columns):
@@ -73,7 +47,7 @@ def cleanUnicodeFractions(s):
     }
 
     for f_unicode, f_ascii in fractions.items():
-        s = s.replace(f_unicode, " " + f_ascii)
+        s = s.replace(f_unicode, u" " + f_ascii)
 
     return s
 
@@ -317,7 +291,7 @@ def export_data(lines):
     output = []
     for line in lines:
         line_clean = re.sub("<[^<]+?>", "", line)
-        tokens = tokenize(line_clean)
+        tokens = tokenizer.tokenize(line_clean)
 
         for i, token in enumerate(tokens):
             features = getFeatures(token, i + 1, tokens)

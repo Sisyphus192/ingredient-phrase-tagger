@@ -13,9 +13,8 @@ find . -name "*.pyc" -delete
 coverage run \
   -m unittest discover
 
-
 # Run static analysis for Python bugs/cruft.
 pyflakes bin/ ingredient_phrase_tagger/
 
 # Run E2E tests.
-#bash ./test_e2e
+bash ./test_e2e
