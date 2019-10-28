@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re
 
-import tokenizer
+from . import tokenizer
 
 
 def joinLine(columns):

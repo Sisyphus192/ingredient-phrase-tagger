@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 import argparse
-#import sys
-#from os import path
 
-#sys.path.append(path.join(path.dirname(path.abspath(__file__)), "../"))
+# import sys
+# from os import path
+
+# sys.path.append(path.join(path.dirname(path.abspath(__file__)), "../"))
 from ingredient_phrase_tagger.training import labelled_data
 from ingredient_phrase_tagger.training import partitioner
 
 
 def main(args):
     with open(args.label_path) as label_file, open(
-        args.training_path, "wb"
-    ) as training_file, open(args.testing_path, "wb") as testing_file:
+        args.training_path, "w"
+    ) as training_file, open(args.testing_path, "w") as testing_file:
         label_reader = labelled_data.Reader(label_file)
         training_writer = labelled_data.Writer(training_file)
         testing_writer = labelled_data.Writer(testing_file)

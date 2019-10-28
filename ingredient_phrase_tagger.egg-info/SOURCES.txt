@@ -13,3 +13,8 @@ ingredient_phrase_tagger/training/partitioner.py
 ingredient_phrase_tagger/training/tokenizer.py
 ingredient_phrase_tagger/training/translator.py
 ingredient_phrase_tagger/training/utils.py
+tests/__init__.py
+tests/test_labelled_data.py
+tests/test_partitioner.py
+tests/test_tokenizer.py
+tests/test_translator.py

@@ -1,6 +1,6 @@
 import re
 
-import utils
+from . import utils
 
 
 def tokenize(s):
